@@ -1,0 +1,31 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.modelrefs/evidence",
+  "description": "Benchmark evidence and retirement dates for AI models, with every claim scoped to its source.",
+  "version": "0.1.0",
+  "websiteUrl": "https://modelrefs.com/documentation#mcp",
+  "repository": {
+    "url": "https://github.com/Modelrefs/modelrefs",
+    "source": "github",
+    "subfolder": "packages/mcp-server"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "modelrefs-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "MODELREFS_API_KEY",
+          "description": "An API key from https://modelrefs.com/api-keys. Optional: without it the server still starts and list_covered_models works, which is the tool worth trying first. The free tier includes 1,000 calls a month.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "modelrefs-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for the ModelRefs Evidence API: governed benchmark evidence, model retirement dates and comparisons that refuse to compare incomparable scores.",
+  "license": "MIT",
+  "homepage": "https://modelrefs.com/documentation#mcp",
+  "bugs": "https://modelrefs.com/contact",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Modelrefs/modelrefs.git",
+    "directory": "packages/mcp-server"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "ai",
+    "llm",
+    "benchmarks",
+    "evidence",
+    "deprecation",
+    "model-lifecycle",
+    "modelrefs"
+  ],
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "bin": { "modelrefs-mcp": "dist/index.js" },
+  "main": "dist/index.js",
+  "files": ["dist", "README.md", "server.json", "registry.schema.json"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "selftest": "node dist/selftest.js",
+    "verify:tarball": "node stdio-check.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
