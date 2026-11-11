@@ -25,7 +25,7 @@ import { MCP_SERVER_NAME, MCP_TOOLS, mcpTool } from "./generated.js";
 import { EvidenceApiClient, describeFailure, type Failure } from "./client.js";
 import { compareModels, type ModelRuns, type RunLike } from "./compare.js";
 
-export const SERVER_VERSION = "0.1.0";
+export const SERVER_VERSION = "0.1.1";
 
 interface CoveragePayload {
   modelsInCatalogue: number;

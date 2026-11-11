@@ -37,12 +37,17 @@ month. The key is read from the environment and never from a command-line argume
 is visible to every process on the machine.
 
 > **Don't pin the version in `args` on Windows.** `npx -y modelrefs-mcp` works;
-> `npx -y modelrefs-mcp@0.1.0` fails with `'modelrefs-mcp' is not recognized as an internal or
-> external command` when launched by an MCP client. The package is identical either way — the
-> same build runs fine through its own `.bin` shim and through `npx --no-install` — so this is
-> npx resolving a bin from its cache when it is given a version spec, not something in the
-> server. If you need a pinned version, install it (`npm i -g modelrefs-mcp@0.1.0`) and set
-> `"command": "modelrefs-mcp"` with no `args`.
+> `npx -y modelrefs-mcp@<any-version>` fails with `'modelrefs-mcp' is not recognized as an
+> internal or external command` when launched by an MCP client. The package is identical either
+> way — the same build runs fine through its own `.bin` shim and through `npx --no-install` — so
+> this is npx resolving a bin from its cache when it is given a version spec, not something in
+> the server. If you need a pinned version, install it and name the binary directly:
+>
+> ```json
+> { "command": "modelrefs-mcp", "args": [] }
+> ```
+>
+> after `npm i -g modelrefs-mcp@<version>`.
 
 ## Tools
 
@@ -120,6 +125,15 @@ exists to prevent.
 The tool table is generated from `src/lib/api-docs/mcp.ts` in the main repository, which the
 reference page also renders, and `npm run governance:mcp-parity` there fails if the copy drifts or
 a tool names an endpoint that does not exist.
+
+## Changelog
+
+**0.1.1** — Documentation only; the server code is unchanged from 0.1.0. Adds the Windows note
+above, after `npx -y modelrefs-mcp@<version>` was found to fail under the launcher MCP clients
+use while the unversioned form works. 0.1.0 shipped before that was known, so its README does
+not warn about it.
+
+**0.1.0** — First release. Four tools over three Evidence API endpoints.
 
 ## Licence
 

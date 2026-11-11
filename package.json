@@ -1,6 +1,6 @@
 {
   "name": "modelrefs-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for the ModelRefs Evidence API: governed benchmark evidence, model retirement dates and comparisons that refuse to compare incomparable scores.",
   "license": "MIT",
   "homepage": "https://modelrefs.com/documentation#mcp",
@@ -22,10 +22,19 @@
     "modelrefs"
   ],
   "type": "module",
-  "engines": { "node": ">=18" },
-  "bin": { "modelrefs-mcp": "dist/index.js" },
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "modelrefs-mcp": "dist/index.js"
+  },
   "main": "dist/index.js",
-  "files": ["dist", "README.md", "server.json", "registry.schema.json"],
+  "files": [
+    "dist",
+    "README.md",
+    "server.json",
+    "registry.schema.json"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",

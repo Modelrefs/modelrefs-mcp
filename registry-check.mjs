@@ -41,16 +41,26 @@
  */
 import { spawnSync } from "node:child_process";
 import spawn from "cross-spawn";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
+/* The default spec is DELIBERATELY unversioned: it is the string the README
+   publishes, and the versioned form is the one npx mishandles on Windows. */
 const SPEC = process.argv[2] ?? "modelrefs-mcp";
-const PUBLISHED_VERSION = "0.1.0";
+
+/* READ, NOT RESTATED. The first version of this file hardcoded "0.1.0", which
+   made it a fifth copy of the version beside package.json, both entries in
+   server.json and SERVER_VERSION — and the one copy no gate watches, so a bump
+   would have left this check asserting the old number against the new package
+   and failing for a reason that had nothing to do with the package. */
 const here = dirname(fileURLToPath(import.meta.url));
+const PUBLISHED_VERSION = JSON.parse(
+  readFileSync(join(here, "package.json"), "utf-8"),
+).version;
 
 let failures = 0;
 const check = (label, condition, detail = "") => {
