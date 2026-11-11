@@ -36,6 +36,14 @@ which is the tool worth trying first. Keys are created at
 month. The key is read from the environment and never from a command-line argument, because argv
 is visible to every process on the machine.
 
+> **Don't pin the version in `args` on Windows.** `npx -y modelrefs-mcp` works;
+> `npx -y modelrefs-mcp@0.1.0` fails with `'modelrefs-mcp' is not recognized as an internal or
+> external command` when launched by an MCP client. The package is identical either way — the
+> same build runs fine through its own `.bin` shim and through `npx --no-install` — so this is
+> npx resolving a bin from its cache when it is given a version spec, not something in the
+> server. If you need a pinned version, install it (`npm i -g modelrefs-mcp@0.1.0`) and set
+> `"command": "modelrefs-mcp"` with no `args`.
+
 ## Tools
 
 | Tool | Needs a key | What it answers |
@@ -94,6 +102,14 @@ npm install
 npm run build
 npm run selftest
 ```
+
+Three checks, each proving something the others cannot:
+
+| Script | What only it can catch |
+| --- | --- |
+| `npm run selftest` | The server's own logic, against a stub serving the live shapes — including the awkward cases the live data does not currently contain. |
+| `npm run verify:tarball` | A broken `files` list, `bin` entry, shebang or module resolution in the packed artifact — things that fail only after someone installs it. |
+| `npm run verify:registry` | That what npm actually **serves** resolves, downloads and runs. Run it after publishing. |
 
 The self-test connects a real MCP client to the server over an in-memory transport and points it
 at a local stub of the Evidence API, so what it exercises is the server that ships. It asserts the

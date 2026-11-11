@@ -31,7 +31,8 @@
     "prepublishOnly": "npm run build",
     "check": "tsc -p tsconfig.json --noEmit",
     "selftest": "node dist/selftest.js",
-    "verify:tarball": "node stdio-check.mjs"
+    "verify:tarball": "node stdio-check.mjs",
+    "verify:registry": "node registry-check.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "cross-spawn": "^7.0.6",
     "typescript": "^5.7.2"
   }
 }
