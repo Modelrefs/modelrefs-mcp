@@ -1,7 +1,7 @@
 {
   "name": "modelrefs-mcp",
-  "version": "0.1.1",
-  "mcpName": "io.github.modelrefs/evidence",
+  "version": "0.1.2",
+  "mcpName": "com.modelrefs/evidence",
   "description": "MCP server for the ModelRefs Evidence API: governed benchmark evidence, model retirement dates and comparisons that refuse to compare incomparable scores.",
   "license": "MIT",
   "homepage": "https://modelrefs.com/documentation#mcp",

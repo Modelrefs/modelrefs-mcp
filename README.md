@@ -128,6 +128,12 @@ a tool names an endpoint that does not exist.
 
 ## Changelog
 
+**0.1.2** — Registry metadata only; the server code is unchanged from 0.1.0. Moves the MCP
+registry name from the GitHub namespace to the domain namespace, `com.modelrefs/evidence`, which
+is the one ModelRefs can prove it owns, and adds the `mcpName` field that 0.1.0 and 0.1.1 both
+shipped without — the registry reads it from the published package to confirm the package and the
+server entry are the same project, and refuses the submission when it is absent.
+
 **0.1.1** — Documentation only; the server code is unchanged from 0.1.0. Adds the Windows note
 above, after `npx -y modelrefs-mcp@<version>` was found to fail under the launcher MCP clients
 use while the unversioned form works. 0.1.0 shipped before that was known, so its README does
