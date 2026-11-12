@@ -1,0 +1,46 @@
+# Runs in the PUBLIC MIRROR only. GitHub Actions reads .github/workflows from a
+# repository root, so in the ModelRefs monorepo this file is inert; after
+# `git subtree push` it sits at the mirror's root and runs there.
+#
+# WHY THE MIRROR NEEDS ITS OWN CI. The monorepo's governance gates check this
+# package against the registries it was generated from, which the mirror does
+# not have. What the mirror CAN check is the thing a stranger cares about:
+# clone it, install it, build it, and confirm the server actually starts and
+# answers an MCP handshake. That is the claim the README makes, and it is the
+# one a reader has no way to verify for themselves before trusting it.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows is in the matrix on purpose. The one caveat the README has to
+        # give - that pinning the version in `args` breaks npx on Windows - was
+        # a Windows-only failure, so a Linux-only build would not have found it
+        # and will not find the next one.
+        os: [ubuntu-latest, windows-latest]
+        node: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      # The self-test holds a real MCP conversation over an in-memory transport
+      # and asserts every tool answers. It needs no API key and no network: the
+      # keyed tools are pointed at a local stub.
+      - run: npm run selftest

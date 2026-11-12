@@ -191,5 +191,12 @@ export const API_ERROR_FACTS: readonly ApiErrorFact[] = [
     "message": "Key verification could not run.",
     "hint": "Transient on our side. Retry with exponential backoff; do not re-issue the key.",
     "docs": "https://modelrefs.com/documentation/#responses"
+  },
+  {
+    "error": "upstream_unavailable",
+    "status": 503,
+    "message": "The API could not be reached behind its own hostname.",
+    "hint": "Transient on our side, and nothing about the request caused it. Retry with exponential backoff; the key and the URL are both fine.",
+    "docs": "https://modelrefs.com/documentation/#responses"
   }
 ];

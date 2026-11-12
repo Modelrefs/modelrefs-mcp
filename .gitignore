@@ -1,0 +1,8 @@
+# This directory is mirrored to its own public repository, where these are the
+# only paths that should never be committed. In the monorepo the root
+# .gitignore already covers them; the mirror has no root to inherit from.
+node_modules/
+dist/
+*.tgz
+.env
+.env.*
