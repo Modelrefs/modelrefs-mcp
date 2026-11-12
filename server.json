@@ -5,9 +5,8 @@
   "version": "0.1.2",
   "websiteUrl": "https://modelrefs.com/documentation#mcp",
   "repository": {
-    "url": "https://github.com/Modelrefs/modelrefs",
-    "source": "github",
-    "subfolder": "packages/mcp-server"
+    "url": "https://github.com/Modelrefs/modelrefs-mcp",
+    "source": "github"
   },
   "packages": [
     {

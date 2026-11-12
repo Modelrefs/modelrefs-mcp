@@ -108,6 +108,19 @@ npm run build
 npm run selftest
 ```
 
+This repository is a mirror. The package is developed inside the ModelRefs
+monorepo, where `src/generated.ts` is produced from the same registries that
+publish the website and the Evidence API, and a governance gate fails the build
+if the copy here and the source there ever disagree. That is the point of the
+arrangement: the tool table this server exposes and the endpoint list the API
+documents cannot drift apart, because they are one table.
+
+What that means for you: pull requests here are welcome and are applied
+upstream, but a fix lands in the monorepo first and arrives in this repository
+with the release that carries it. For anything else — a wrong retirement date, a
+model you need covered, a bug in an answer — <https://modelrefs.com/contact>
+reaches someone faster than an issue here.
+
 Three checks, each proving something the others cannot:
 
 | Script | What only it can catch |

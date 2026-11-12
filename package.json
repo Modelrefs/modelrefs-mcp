@@ -8,8 +8,7 @@
   "bugs": "https://modelrefs.com/contact",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Modelrefs/modelrefs.git",
-    "directory": "packages/mcp-server"
+    "url": "git+https://github.com/Modelrefs/modelrefs-mcp.git"
   },
   "keywords": [
     "mcp",
